@@ -1,0 +1,25 @@
+<%- include("partials/header.ejs") %>
+
+<div class="container mt-5">
+    <h2>Edit blog post number <%= numOfBlogPostToEdit %></h2>
+    <form action="/submitEditExsistingPost" method="POST">
+        <div class="mb-3">
+          <label for="exampleInputEmail1" class="form-label">Blog post title</label>
+          <input type="text" class="form-control" name="titleBlog" id="exampleInputEmail1" aria-describedby="emailHelp">
+        </div>
+        <div class="mb-3">
+          <label for="exampleInputPassword1" class="form-label">Username</label>
+          <input type="text" class="form-control" name="nameBloger" id="exampleInputPassword1">
+        </div>
+        <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Blog text</label>
+            <input type="text" class="form-control" name="blogContent" id="exampleInputPassword1">
+        </div>
+        
+        <button name="editBlogPost" value="<%= numOfBlogPostToEdit %>" type="submit" class="btn btn-primary">Edit</button>
+    </form>
+</div>
+
+
+
+<%- include("partials/footer.ejs") %>

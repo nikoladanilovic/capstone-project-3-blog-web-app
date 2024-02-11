@@ -1,0 +1,53 @@
+<%- include("partials/header.ejs") %>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+<% let blogPostss = []; %>
+<% //if (locals.blogPosts) blogPostss = JSON.parse(blogPosts); //blogPosts.push(data);  %>
+
+<div class="px-4 py-5 my-5 text-center">
+    <h1 class="display-5 fw-bold text-body-emphasis">Share your thoughts</h1>
+    <div class="col-lg-6 mx-auto">
+        <p class="lead mb-4">Share your thoughts with the world. Find what others think on interesting subjects. Meet other people and discuss important questions. If you don't like what you shared you can delete your blog post or you can edit it. So you are free to write whatever you want. And by the way, it is free. You don't have to sign in or anything, you can just start sharing!</p>
+        
+    </div>
+</div>
+
+
+
+
+<% if(locals.blogPostsww/*&& locals.blogPosts[0].blogerName && locals.blogPosts[0].content*/){ %>
+
+    <% blogPostsww.forEach((dat) => { %>
+         <!--<div class="container mb-4 blog-post">  -->
+        <div class="card mx-5 my-4">
+            <div class="card-body">
+                
+                <h3 class="mt-2"> <%= dat.blogTitle %> </h3> 
+                <p> <%= dat.blogerName %> </p>   
+                <p> <%= dat.content %> </p> 
+                
+                <!-- ovo valja, koristi ovo i za submitEdit -->
+                <form action="/submitDelete" method="post" class="mb-2">
+                    <button name="delete" type="submit" value="<%= dat.numberOfPost %>" class="btn btn-danger">Delete</button>
+                  </form>
+
+                <!-- ovo ne valja -->
+                <form action="/submitEdit" method="post" class="mb-2">
+                    <button type="submit" name="edit" value="<%= dat.numberOfPost %>" class="btn btn-warning">Edit</button>
+                  </form>
+            </div>                  
+        </div>  
+    <% }); %> 
+<% } %>
+
+<script>
+    $(document).on("click", ".btn-danger", function(){
+        console.log("deleted");
+        $(this).parent().css("display", "none");
+    });
+</script>
+
+
+
+<%- include("partials/footer.ejs") %>
